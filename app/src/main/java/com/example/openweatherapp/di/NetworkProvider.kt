@@ -1,5 +1,6 @@
 package com.example.openweatherapp.di
 
+import com.example.openweatherapp.BuildConfig
 import com.example.openweatherapp.network.WeatherAPI
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -7,31 +8,31 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import kotlin.math.log
 
-object  NetworkProvider {
+object NetworkProvider {
 
-    private const val BASE_URL="https://api.openweathermap.org/data/2.5/"
-    private const val API_KEY="appid"
+    private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
+    private const val API_KEY = "appid"
 
-    private val keyInterceptor:Interceptor by lazy {
+    private val keyInterceptor: Interceptor = Interceptor { chain ->
+        val request = chain.request()
+        val url = request.url.newBuilder().addQueryParameter(API_KEY, BuildConfig.API_KEY).build()
+        chain.proceed(request.newBuilder().url(url).build())
+    }
 
-        HttpLoggingInterceptor().apply {
-            setLevel(HttpLoggingInterceptor.Level.BODY)
+    private val logInterceptor: Interceptor = HttpLoggingInterceptor().apply {
+        if (BuildConfig.DEBUG) {
+            apply { level = HttpLoggingInterceptor.Level.BODY }
+        } else {
+            apply { level = HttpLoggingInterceptor.Level.NONE }
         }
     }
 
-    private val logInterceptor:Interceptor by lazy {
-        HttpLoggingInterceptor().apply {
-            setLevel((HttpLoggingInterceptor.Level.BODY))
-        }
-
-    }
-    private val okHttpClient:OkHttpClient by lazy {
+    private val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .addNetworkInterceptor(keyInterceptor)
             .addNetworkInterceptor(logInterceptor)
-            .connectTimeout(5,TimeUnit.SECONDS)
+            .connectTimeout(5, TimeUnit.SECONDS)
             .build()
     }
 
@@ -44,7 +45,7 @@ object  NetworkProvider {
             .build()
     }
 
-    val weatherAPI:WeatherAPI by lazy {
+    val weatherAPI: WeatherAPI by lazy {
         retrofit.create(WeatherAPI::class.java)
     }
 

@@ -9,9 +9,8 @@ import kotlinx.coroutines.withContext
 
 
 interface WeatherRepositoryContract {
-    suspend fun getWeather(): List<WeatherForcast>
+    suspend fun getWeather(lat: Double, lon: Double): List<WeatherForcast>
 }
-
 
 class WeatherRepository(
     private val weatherAPI: WeatherAPI = NetworkProvider.weatherAPI,
@@ -20,7 +19,7 @@ class WeatherRepository(
 ) : WeatherRepositoryContract {
     override suspend fun getWeather(lat: Double, lon: Double): List<WeatherForcast> {
         return withContext(dispatcher) {
-            val response = weatherAPI.getFiveDaysWeather(lat, lon)
+            val response = weatherAPI.getWeather(lat, lon)
             return@withContext response.forecasts
 
         }

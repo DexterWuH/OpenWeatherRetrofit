@@ -1,4 +1,6 @@
 package com.example.openweatherapp.ui.home
 
-class MainViewModel {
+import com.example.openweatherapp.repository.WeatherRepositoryContract
+
+class MainViewModel(private val weatherRepository: WeatherRepositoryContract) {
 }

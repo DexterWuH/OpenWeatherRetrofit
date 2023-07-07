@@ -7,10 +7,9 @@ import com.example.openweatherapp.repository.WeatherRepository
 import com.example.openweatherapp.repository.WeatherRepositoryContract
 import com.example.openweatherapp.ui.home.MainViewModel
 
-object ViewModelFactory: ViewModelProvider.Factory {
+object ViewModelFactory : ViewModelProvider.Factory {
 
-}
-    private val weatherRepository:WeatherRepositoryContract by lazy {
+    private val weatherRepository: WeatherRepositoryContract by lazy {
         WeatherRepository()
     }
 
@@ -19,4 +18,5 @@ object ViewModelFactory: ViewModelProvider.Factory {
             return MainViewModel(weatherRepository) as T
         }
         throw  IllegalAccessException("must provide a ViewModel")
+    }
 }
