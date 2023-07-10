@@ -5,23 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.openweatherapp.repository.WeatherRepositoryContract
 import kotlinx.coroutines.launch
-import java.security.PrivateKey
 
 class MainViewModel(
     private val weatherRepository: WeatherRepositoryContract,
-
-
-    ): ViewModel() {
-
-
-
-
-
-
+) : ViewModel() {
     fun doSomething() {
         viewModelScope.launch {
             val response = weatherRepository.getWeather(lat = 44.34, lon = 10.99)
-            Log.d("MainViewModel", "${response}")
+            Log.d("MainViewModel", "$response")
         }
     }
 }

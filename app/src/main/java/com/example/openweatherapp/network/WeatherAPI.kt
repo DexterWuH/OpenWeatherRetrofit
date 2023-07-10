@@ -6,8 +6,5 @@ import retrofit2.http.Query
 
 interface WeatherAPI {
     @GET("forecast")
-    suspend fun getWeather(
-        @Query("lat")lat:Double,
-        @Query("lon")lon:Double,
-    ):WeatherResponse
+    suspend fun getWeather(@Query("lat") lat: Double, @Query("lon") lon: Double): WeatherResponse
 }

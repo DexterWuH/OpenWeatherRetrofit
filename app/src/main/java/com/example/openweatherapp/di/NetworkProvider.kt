@@ -36,7 +36,6 @@ object NetworkProvider {
             .build()
     }
 
-
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .client(okHttpClient)
@@ -48,6 +47,4 @@ object NetworkProvider {
     val weatherAPI: WeatherAPI by lazy {
         retrofit.create(WeatherAPI::class.java)
     }
-
-
 }

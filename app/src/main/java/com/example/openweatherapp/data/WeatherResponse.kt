@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class WeatherResponse(
     @SerializedName("cnt")
     val numberOfResults: Int,
-    val forecasts: List<WeatherForcast>
+    val forecasts: List<WeatherForecast>
 )
 
 
@@ -22,7 +22,7 @@ data class DayConditions(
 )
 
 
-data class WeatherForcast(
+data class WeatherForecast(
     @SerializedName("dt")
     val dayTime: Long,
     @SerializedName("main")
