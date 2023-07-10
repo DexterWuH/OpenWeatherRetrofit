@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainViewModel.doSomething()
+        mainViewModel.fetchWeather()
+        setInitialFragment()
     }
 
     private fun setInitialFragment() {

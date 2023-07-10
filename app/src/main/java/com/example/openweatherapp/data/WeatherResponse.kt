@@ -9,6 +9,16 @@ data class WeatherResponse(
 )
 
 
+data class WeatherForecast(
+    @SerializedName("dt")
+    val dayTime: Long,
+    @SerializedName("main")
+    val dayConditions: DayConditions,
+    @SerializedName("weather")
+    val descriptions: List<WeatherDescription>
+
+)
+
 data class DayConditions(
     @SerializedName("temp")
     val averageTemperature: Double,
@@ -19,17 +29,6 @@ data class DayConditions(
     val maxTemperature: Double,
     @SerializedName("humidity")
     val humidity: Int
-)
-
-
-data class WeatherForecast(
-    @SerializedName("dt")
-    val dayTime: Long,
-    @SerializedName("main")
-    val dayConditions: DayConditions,
-    @SerializedName("weather")
-    val descriptions: List<WeatherDescription>
-
 )
 
 data class WeatherDescription(
