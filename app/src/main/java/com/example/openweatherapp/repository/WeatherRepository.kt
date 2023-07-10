@@ -1,5 +1,6 @@
 package com.example.openweatherapp.repository
 
+import android.util.Log
 import com.example.openweatherapp.data.WeatherForcast
 import com.example.openweatherapp.di.NetworkProvider
 import com.example.openweatherapp.network.WeatherAPI
@@ -21,6 +22,7 @@ class WeatherRepository(
         return withContext(dispatcher) {
             val response = weatherAPI.getWeather(lat, lon)
             return@withContext response.forecasts
+
 
         }
 
