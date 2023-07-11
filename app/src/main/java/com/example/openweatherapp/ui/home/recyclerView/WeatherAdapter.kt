@@ -4,18 +4,18 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import com.example.openweatherapp.R
-import com.example.openweatherapp.data.WeatherResponse
+import com.example.openweatherapp.data.DayConditions
 
-class WeatherAdapter(weatherResponse: List<WeatherResponse>) : androidx.recyclerview.widget.RecyclerView.Adapter<WeatherViewHolder>() {
+class WeatherAdapter(weatherForecast: List<DayConditions>) : androidx.recyclerview.widget.RecyclerView.Adapter<WeatherViewHolder>() {
 
-private val weatherResponse:MutableList<WeatherResponse> = mutableListOf<WeatherResponse>().apply {
-    addAll(weatherResponse)
+private val dayConditions:MutableList<DayConditions> = mutableListOf<DayConditions>().apply {
+    addAll(weatherForecast)
 }
 
     @SuppressLint
-    fun refreshWeatherList(newWeatherResponse: List<WeatherResponse>){
-        weatherResponse.clear()
-        weatherResponse.addAll(newWeatherResponse)
+    fun refreshWeatherList(newDayConditions: List<DayConditions>){
+        dayConditions.clear()
+        dayConditions.addAll(newDayConditions)
         notifyDataSetChanged()
     }
 
@@ -25,11 +25,11 @@ private val weatherResponse:MutableList<WeatherResponse> = mutableListOf<Weather
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        holder.bindModelToView(weatherResponse[holder.adapterPosition])
+        holder.bindModelToView(dayConditions[holder.adapterPosition])
     }
 
     override fun getItemCount(): Int {
-        return weatherResponse.size
+        return dayConditions.size
     }
 
 

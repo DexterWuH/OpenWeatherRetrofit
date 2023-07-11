@@ -30,7 +30,7 @@
                 tools:text="Some text to display" />
 
             <TextView
-                android:id="@+id/daytime_textview"
+                android:id="@+id/average_Temp_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -39,21 +39,21 @@
                 tools:text="Some text to display" />
 
             <TextView
-                android:id="@+id/average_temperature"
+                android:id="@+id/humidity_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/daytime_textview"
+                app:layout_constraintTop_toBottomOf="@id/average_Temp_textview"
                 tools:text="Some text to display" />
 
             <TextView
-                android:id="@+id/overall_description_textview"
+                android:id="@+id/feels_like_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/average_temperature"
+                app:layout_constraintTop_toBottomOf="@id/humidity_textview"
                 tools:text="Some text to display" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

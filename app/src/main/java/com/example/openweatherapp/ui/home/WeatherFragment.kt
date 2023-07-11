@@ -42,8 +42,9 @@ class WeatherFragment : Fragment(){
         observeResults()
     }
     private fun observeResults(){
-        mainViewModel.weatherResponse.observe(viewLifecycleOwner){
+        mainViewModel.dayCondition.observe(viewLifecycleOwner){
             adapter.refreshWeatherList(it)
+
         }
     }
 }
