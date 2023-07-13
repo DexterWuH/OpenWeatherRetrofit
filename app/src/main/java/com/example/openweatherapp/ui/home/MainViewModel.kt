@@ -17,7 +17,7 @@ class MainViewModel(
     fun fetchWeather() {
         viewModelScope.launch{
             val response = weatherRepository.getWeather(44.34, 10.99)
-            dayCondition.postValue(response)
+            dayCondition.postValue(listOf(response.forecasts.first().dayConditions))
             Log.d("MainViewModel", "$response")
         }
     }

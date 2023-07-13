@@ -12,17 +12,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 interface WeatherRepositoryContract {
-    suspend fun getWeather(lat: Double, lon: Double): List<DayConditions>
+    suspend fun getWeather(lat: Double, lon: Double): WeatherResponse
 }
 
 class WeatherRepository(
     private val weatherAPI: WeatherAPI = NetworkProvider.weatherAPI,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : WeatherRepositoryContract {
-    override suspend fun getWeather(lat: Double, lon: Double): List<DayConditions> {
+    override suspend fun getWeather(lat: Double, lon: Double): WeatherResponse {
         return withContext(dispatcher) {
             val response = weatherAPI.getWeather(lat, lon)
-            return@withContext listOf(response)
+            return@withContext response
         }
     }
 }
